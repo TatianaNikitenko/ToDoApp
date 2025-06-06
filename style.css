@@ -1,17 +1,48 @@
 /* styles.css */
 :root {
-    --primary-color: #5d78ff;
-    --primary-hover: #4a5fe0;
-    --danger-color: #ff5d5d;
-    --danger-hover: #e04a4a;
-    --text-color: #2d3748;
-    --text-light: #718096;
-    --bg-color: #f8fafc;
+    --primary-color: #ff8c69;
+    --primary-hover: #ff704f;
+    --danger-color: #ff5e78;
+    --danger-hover: #e04860;
+    --text-color: #3e3e3e;
+    --text-light: #a0a0a0;
+    --bg-color: #fffaf5;
     --card-bg: #ffffff;
-    --border-radius: 12px;
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --border-radius: 14px;
+    --shadow: 0 4px 20px rgba(255, 140, 105, 0.15);
+    --transition: all 0.3s ease;
 }
+h1 {
+    animation: popIn 0.6s ease;
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
 
 * {
     box-sizing: border-box;
