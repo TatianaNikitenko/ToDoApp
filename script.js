@@ -11,32 +11,32 @@ document.addEventListener('DOMContentLoaded', function() {
     function renderTodos() {
         todoList.innerHTML = '';
 
-        const filteredTodos = todos.filter(todo => {
+        const filteredTodos = todos
+        .map((todo, i) => ({ ...todo, realIndex: i })) // добавляем реальный индекс
+        .filter(todo => {
             if (currentFilter === 'all') return true;
             if (currentFilter === 'active') return !todo.completed;
             if (currentFilter === 'completed') return todo.completed;
         });
 
-        if (filteredTodos.length === 0) {
-            todoList.innerHTML = '<div class="empty-state">No todos found</div>';
-            return;
-        }
+    if (filteredTodos.length === 0) {
+        todoList.innerHTML = '<div class="empty-state">No todos found</div>';
+        return;
+    }
 
-        filteredTodos.forEach((todo, index) => {
-            const li = document.createElement('li');
-            li.className = 'todo-item';
-            if (todo.completed) {
-                li.classList.add('completed');
-            }
+    filteredTodos.forEach((todo) => {
+        const li = document.createElement('li');
+        li.className = 'todo-item';
+        if (todo.completed) li.classList.add('completed');
 
-            li.innerHTML = `
-                <input type="checkbox" ${todo.completed ? 'checked' : ''} data-id="${index}">
-                <span class="todo-text">${todo.text}</span>
-                <button class="delete-btn" data-id="${index}">Delete</button>
-            `;
+        li.innerHTML = `
+            <input type="checkbox" ${todo.completed ? 'checked' : ''} data-id="${todo.realIndex}">
+            <span class="todo-text">${todo.text}</span>
+            <button class="delete-btn" data-id="${todo.realIndex}">Delete</button>
+        `;
 
-            todoList.appendChild(li);
-        });
+        todoList.appendChild(li);
+    });
 
         // Add event listeners to checkboxes and delete buttons
         document.querySelectorAll('.todo-item input[type="checkbox"]').forEach(checkbox => {
